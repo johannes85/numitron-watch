@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "steamwatch", "steamwatch.cppproj", "{2A5D3153-E0EC-4966-89AA-BCBD621C4841}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A5D3153-E0EC-4966-89AA-BCBD621C4841}.Debug|AVR.ActiveCfg = Debug|AVR
+		{2A5D3153-E0EC-4966-89AA-BCBD621C4841}.Debug|AVR.Build.0 = Debug|AVR
+		{2A5D3153-E0EC-4966-89AA-BCBD621C4841}.Release|AVR.ActiveCfg = Release|AVR
+		{2A5D3153-E0EC-4966-89AA-BCBD621C4841}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
