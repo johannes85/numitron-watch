@@ -65,6 +65,10 @@
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\hardware\arduino\variants\standard</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\Wire</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\Wire\utility</Value>
+            <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\EEPROM</Value>
+            <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\EEPROM\utility</Value>
+            <Value>D:\Eigene Dateien\Arduino\libraries\Sha</Value>
+            <Value>D:\Eigene Dateien\Arduino\libraries\Sha\utility</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\hardware\arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
@@ -100,6 +104,10 @@
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\hardware\arduino\variants\standard</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\Wire</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\Wire\utility</Value>
+            <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\EEPROM</Value>
+            <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\EEPROM\utility</Value>
+            <Value>D:\Eigene Dateien\Arduino\libraries\Sha</Value>
+            <Value>D:\Eigene Dateien\Arduino\libraries\Sha\utility</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\hardware\arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
@@ -122,6 +130,71 @@
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
       </AvrGccCpp>
     </ToolchainSettings>
+    <VisualMicroSettings>
+      <VisualMicroSettings>
+        <arduino.board.name>pro328</arduino.board.name>
+        <arduino.board.desc>Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega328</arduino.board.desc>
+        <arduino.board.property_bag>name=Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega328
+upload.protocol=arduino
+upload.maximum_size=30720
+upload.speed=57600
+bootloader.low_fuses=0xFF
+bootloader.high_fuses=0xDA
+bootloader.extended_fuses=0x05
+bootloader.path=atmega
+bootloader.file=ATmegaBOOT_168_atmega328_pro_8MHz.hex
+bootloader.unlock_bits=0x3F
+bootloader.lock_bits=0x0F
+build.mcu=atmega328p
+build.f_cpu=8000000L
+build.core=arduino
+build.variant=standard
+runtime.ide.path=D:\Eigene Dateien\progz\AVR\arduino-1.0.5
+build.system.path=D:\Eigene Dateien\progz\AVR\arduino-1.0.5\hardware\arduino\system
+runtime.ide.version=105
+originalid=pro328
+vm.platform.root.path=C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\arduino10x
+vm.core.include=arduino.h
+ide.hint=Arduino 0023 and 1.0.x Ide
+ide.location.key=Arduino
+ide.location.ide.winreg=Arduino 1.0.x Application
+ide.location.sketchbook.winreg=Arduino 1.0.x Sketchbook
+ide.location.sketchbook.preferences=sketchbook.path
+ide.location.sketchbook.default=%MYDOCUMENTS%\arduino
+ide.location.preferences=%VM_APPDATA_ROAMING%\arduino\preferences.txt
+ide.default.package=arduino
+ide.default.platform=avr
+ide.multiplatform=true
+ide.includes=arduino.h
+ide.platformswithoutpackage=true
+ide.includes.fallback=wprogram.h
+ide.extension=ino
+ide.extension.fallback=pde
+ide.versionLTEQ=149
+ide.exe=arduino.exe
+ide.hosts=atmel
+ide.url=http://arduino.cc/en/Main/Software
+vm.debug=true
+software=ARDUINO
+ide.appid=arduino10x
+location.sketchbook=D:\Eigene Dateien\Arduino
+build.board=AVR_PRO328
+vm.boardsource.path=D:\Eigene Dateien\progz\AVR\arduino-1.0.5\hardware\arduino
+vm.platformname.name=avr
+build.arch=AVR
+</arduino.board.property_bag>
+        <arduino.build.mcu>atmega328p</arduino.build.mcu>
+        <arduino.build.f_cpu>8000000L</arduino.build.f_cpu>
+        <arduino.build.core>arduino</arduino.build.core>
+        <arduino.upload.protocol>arduino</arduino.upload.protocol>
+        <arduino.upload.speed>57600</arduino.upload.speed>
+        <arduino.upload.maximum_size>30720</arduino.upload.maximum_size>
+        <visualmicro.application.name>arduino10x</visualmicro.application.name>
+        <visualmicro.package.name>arduino</visualmicro.package.name>
+        <visualmicro.platform.name>avr</visualmicro.platform.name>
+        <arduino.upload.port>COM4</arduino.upload.port>
+      </VisualMicroSettings>
+    </VisualMicroSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
@@ -149,6 +222,10 @@
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\hardware\arduino\variants\standard</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\Wire</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\Wire\utility</Value>
+            <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\EEPROM</Value>
+            <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\EEPROM\utility</Value>
+            <Value>D:\Eigene Dateien\Arduino\libraries\Sha</Value>
+            <Value>D:\Eigene Dateien\Arduino\libraries\Sha\utility</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\hardware\arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
@@ -184,6 +261,10 @@
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\hardware\arduino\variants\standard</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\Wire</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\Wire\utility</Value>
+            <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\EEPROM</Value>
+            <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries\EEPROM\utility</Value>
+            <Value>D:\Eigene Dateien\Arduino\libraries\Sha</Value>
+            <Value>D:\Eigene Dateien\Arduino\libraries\Sha\utility</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\libraries</Value>
             <Value>D:\Eigene Dateien\progz\AVR\arduino-1.0.5\hardware\arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
@@ -206,6 +287,71 @@
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
       </AvrGccCpp>
     </ToolchainSettings>
+    <VisualMicroSettings>
+      <VisualMicroSettings>
+        <arduino.board.name>pro328</arduino.board.name>
+        <arduino.board.desc>Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega328</arduino.board.desc>
+        <arduino.board.property_bag>name=Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega328
+upload.protocol=arduino
+upload.maximum_size=30720
+upload.speed=57600
+bootloader.low_fuses=0xFF
+bootloader.high_fuses=0xDA
+bootloader.extended_fuses=0x05
+bootloader.path=atmega
+bootloader.file=ATmegaBOOT_168_atmega328_pro_8MHz.hex
+bootloader.unlock_bits=0x3F
+bootloader.lock_bits=0x0F
+build.mcu=atmega328p
+build.f_cpu=8000000L
+build.core=arduino
+build.variant=standard
+runtime.ide.path=D:\Eigene Dateien\progz\AVR\arduino-1.0.5
+build.system.path=D:\Eigene Dateien\progz\AVR\arduino-1.0.5\hardware\arduino\system
+runtime.ide.version=105
+originalid=pro328
+vm.platform.root.path=C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\arduino10x
+vm.core.include=arduino.h
+ide.hint=Arduino 0023 and 1.0.x Ide
+ide.location.key=Arduino
+ide.location.ide.winreg=Arduino 1.0.x Application
+ide.location.sketchbook.winreg=Arduino 1.0.x Sketchbook
+ide.location.sketchbook.preferences=sketchbook.path
+ide.location.sketchbook.default=%MYDOCUMENTS%\arduino
+ide.location.preferences=%VM_APPDATA_ROAMING%\arduino\preferences.txt
+ide.default.package=arduino
+ide.default.platform=avr
+ide.multiplatform=true
+ide.includes=arduino.h
+ide.platformswithoutpackage=true
+ide.includes.fallback=wprogram.h
+ide.extension=ino
+ide.extension.fallback=pde
+ide.versionLTEQ=149
+ide.exe=arduino.exe
+ide.hosts=atmel
+ide.url=http://arduino.cc/en/Main/Software
+vm.debug=true
+software=ARDUINO
+ide.appid=arduino10x
+location.sketchbook=D:\Eigene Dateien\Arduino
+build.board=AVR_PRO328
+vm.boardsource.path=D:\Eigene Dateien\progz\AVR\arduino-1.0.5\hardware\arduino
+vm.platformname.name=avr
+build.arch=AVR
+</arduino.board.property_bag>
+        <arduino.build.mcu>atmega328p</arduino.build.mcu>
+        <arduino.build.f_cpu>8000000L</arduino.build.f_cpu>
+        <arduino.build.core>arduino</arduino.build.core>
+        <arduino.upload.protocol>arduino</arduino.upload.protocol>
+        <arduino.upload.speed>57600</arduino.upload.speed>
+        <arduino.upload.maximum_size>30720</arduino.upload.maximum_size>
+        <visualmicro.application.name>arduino10x</visualmicro.application.name>
+        <visualmicro.package.name>arduino</visualmicro.package.name>
+        <visualmicro.platform.name>avr</visualmicro.platform.name>
+        <arduino.upload.port>COM4</arduino.upload.port>
+      </VisualMicroSettings>
+    </VisualMicroSettings>
   </PropertyGroup>
   <ItemGroup>
     <None Include="steamwatch.ino">
@@ -246,7 +392,22 @@
     <Compile Include="screenTime.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="screenTOTP.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="screenTOTP.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="settings.cpp">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="settings.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="otpSigner.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="otpSigner.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="timeout.cpp">

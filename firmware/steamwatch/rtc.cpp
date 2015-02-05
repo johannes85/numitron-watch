@@ -6,7 +6,7 @@
  *  \______  /\___  >\___  >__|_ \  \__/\  /  (____  /__|  \___  >___|  /
  *         \/     \/     \/     \/       \/        \/          \/     \/
  *    Numitron Geekwatch
- *    v0.1
+ *    v0.2
  *  
  * by DomesticHacks
  * http://domestichacks.info/
@@ -23,14 +23,57 @@
 #include "rtc.h"
 #include <Wire.h>
 
+uint32_t Time::getUnixTimeLocal()
+{
+	uint32_t ret;
+	uint8_t i;
+	
+	uint8_t yearDiff = 2000 + year - 1970;
+	
+	// Last years
+	ret = yearDiff * (SECS_PER_DAY * 365);
+	for (i = 0; i < yearDiff; i++) {
+		if (LEAP_YEAR(i)) {
+			ret += SECS_PER_DAY;
+		}
+	}
+	
+	// This year
+	// Last months
+	for (i = 1; i < month; i++) {
+		if (i == 2 && LEAP_YEAR(yearDiff)) {
+			ret += SECS_PER_DAY * 29;
+		} else {
+			ret += SECS_PER_DAY * monthDays[i - 1];
+		}
+	}
+	// This month
+	ret += 
+		((day - 1) * SECS_PER_DAY) +
+		(hours * SECS_PER_HOUR) +
+		(minutes * SECS_PER_MIN) +
+		seconds;
+	
+	return(ret);
+}
+
+uint32_t Time::getUnixTimeUTC() {
+	return (getUnixTimeLocal() - (utcOffset * SECS_PER_HOUR));
+}
+
 void RtcClass::init()
 {
+	init(0);
+}
+
+void RtcClass::init(int8_t utcOffset)
+{
+	this->utcOffset = utcOffset;
 	Wire.begin();
 }
 
 void RtcClass::now(Time &time)
 {
-	//do {
     Wire.beginTransmission(RTC_ADDR_WRITE >> 1);
     Wire.write(RTC_ADDR_S);
     Wire.endTransmission();
@@ -43,7 +86,8 @@ void RtcClass::now(Time &time)
     time.weekday = decodeBcd(Wire.read());
     time.month = decodeBcd(Wire.read());
     time.year = decodeBcd(Wire.read());
-	//} while (time.seconds == 165);
+	
+	time.utcOffset = utcOffset;
  }
  
 void RtcClass::set(Time &time)
@@ -61,6 +105,8 @@ void RtcClass::set(Time &time)
 	Wire.write(encodeBcd(time.month));
 	Wire.write(encodeBcd(time.year));
 	Wire.endTransmission();
+	
+	utcOffset = time.utcOffset;
 }
 
 uint8_t RtcClass::getStatus()

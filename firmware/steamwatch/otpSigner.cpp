@@ -6,7 +6,8 @@
  *  \______  /\___  >\___  >__|_ \  \__/\  /  (____  /__|  \___  >___|  /
  *         \/     \/     \/     \/       \/        \/          \/     \/
  *    Numitron Geekwatch
- *    v0.2
+ *    TOTP Screen (otp lib)
+ *    v0.1
  *  
  * by DomesticHacks
  * http://domestichacks.info/
@@ -20,27 +21,30 @@
  *
  */
 
-#ifndef _SCREENTIME_h
-#define _SCREENTIME_h
+#include "otpSigner.h"
+#include "sha1.h"
 
-#include "Arduino.h"
-#include "screen.h"
-#include "timeout.h"
-#include "rtc.h"
+#define DEBUG 1
 
-class ScreenTimeClass: public Screen
-{
-	public:
-		virtual void init();
-		virtual void loop();
-		uint8_t showTime;
-		uint8_t showDate;
-	private:
-		TimeoutCounter timeout;
-		Time currentTime;
-		uint8_t currentStep;
-};
+uint32_t OTPSignerClass::sign(
+	uint8_t *challenge,
+	uint8_t challengeLength,
+	uint8_t *key,
+	uint8_t keyLength
+) {
+  Sha1.initHmac(key, keyLength);
+  Sha1.write(challenge, challengeLength);
+  hmacResult = Sha1.resultHmac();
+  
+  uint8_t offset1 = hmacResult[19] & 0xF;
+  hotpResult =
+    (uint32_t)(hmacResult[offset1]  & 0x7F) << 24 |
+    (uint32_t)hmacResult[offset1+1] << 16 |
+    (uint32_t)hmacResult[offset1+2] <<  8 |
+    hmacResult[offset1+3] ;
+  hotpResult %= 1000000;
+  
+  return(hotpResult);
+}
 
-extern ScreenTimeClass ScreenTime;
-
-#endif
+OTPSignerClass OTPSigner;

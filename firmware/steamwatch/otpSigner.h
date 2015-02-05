@@ -6,7 +6,8 @@
  *  \______  /\___  >\___  >__|_ \  \__/\  /  (____  /__|  \___  >___|  /
  *         \/     \/     \/     \/       \/        \/          \/     \/
  *    Numitron Geekwatch
- *    v0.2
+ *    TOTP Screen (otp lib)
+ *    v0.1
  *  
  * by DomesticHacks
  * http://domestichacks.info/
@@ -20,27 +21,20 @@
  *
  */
 
-#ifndef _SCREENTIME_h
-#define _SCREENTIME_h
+#ifndef _OTPSIGNER_h
+#define _OTPSIGNER_h
 
 #include "Arduino.h"
-#include "screen.h"
-#include "timeout.h"
-#include "rtc.h"
 
-class ScreenTimeClass: public Screen
+class OTPSignerClass
 {
-	public:
-		virtual void init();
-		virtual void loop();
-		uint8_t showTime;
-		uint8_t showDate;
-	private:
-		TimeoutCounter timeout;
-		Time currentTime;
-		uint8_t currentStep;
+  public:
+    uint32_t sign(uint8_t *challenge, uint8_t challengeLength, uint8_t *key, uint8_t keyLength);
+  private:
+    uint8_t *hmacResult;
+    uint32_t hotpResult;
 };
 
-extern ScreenTimeClass ScreenTime;
+extern OTPSignerClass OTPSigner;
 
 #endif

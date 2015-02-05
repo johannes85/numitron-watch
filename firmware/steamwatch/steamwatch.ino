@@ -6,7 +6,7 @@
  *  \______  /\___  >\___  >__|_ \  \__/\  /  (____  /__|  \___  >___|  /
  *         \/     \/     \/     \/       \/        \/          \/     \/
  *    Numitron Geekwatch
- *    v0.1
+ *    v0.2
  *  
  * by DomesticHacks
  * http://domestichacks.info/
@@ -22,13 +22,15 @@
 
 #include <Wire.h>
 #include <avr/sleep.h>
+#include "sha1.h"
 #include "settings.h"
 #include "rtc.h"
 #include "display.h"
 #include "screen.h"
 #include "screenTime.h"
 #include "screenSettime.h"
-
+#include "screenTOTP.h"
+#include "EEPROM.h"
 
 Screen *currentScreen;
 uint8_t wakeUpBy;
@@ -48,10 +50,12 @@ void setup()
 	digitalWrite(BTN_RIGHT, HIGH);
 	
 	#ifdef DEBUG
-		Serial.begin(9600);
+	Serial.begin(9600);
 	#endif
 	
-	Rtc.init();
+	Rtc.init(
+		EpromSettings.readTimezoneOffset()
+	);
 	Display.init();
 	
 	wakeUpBy = 0;
@@ -60,7 +64,7 @@ void setup()
 	uint8_t status = Rtc.getStatus();
 	if ((status & 1 << RTC_STATUSBIT_PON) != 0) {
 		#ifdef DEBUG
-			Serial.println("RTC: Power on happened");
+		Serial.println("RTC: Power on happened");
 		#endif
 		timeSet = 0;
 		Time time;
@@ -83,7 +87,9 @@ void loop()
 	delay(40);
 	uint8_t selectedScreen = 0;
 	if (wakeUpBy == BTN_RIGHT) {
-		selectedScreen = SCREEN_DATE;
+		//Disabled date display until I found a way to switch between the modes
+		//selectedScreen = SCREEN_DATE;
+		selectedScreen = SCREEN_OTP;
 	} else {
 		selectedScreen = SCREEN_TIME;
 	}
@@ -98,10 +104,10 @@ void loop()
 	}
 
 	#ifdef DEBUG
-		Serial.print("Wake up by: ");
-		Serial.println(wakeUpBy);
-		Serial.print("Switch to screen: ");
-		Serial.println(selectedScreen);
+	Serial.print("Wake up by: ");
+	Serial.println(wakeUpBy);
+	Serial.print("Switch to screen: ");
+	Serial.println(selectedScreen);
 	#endif
 
 	if (selectedScreen != 0) {
@@ -115,6 +121,9 @@ void loop()
 				ScreenTime.showDate = 0;
 				ScreenTime.showTime = 1;
 				currentScreen = &ScreenTime;
+				break;
+			case SCREEN_OTP:
+				currentScreen = &ScreenTOTP;
 				break;
 			case SCREEN_SETTIME:
 				currentScreen = &ScreenSettime;
