@@ -6,7 +6,7 @@
  *  \______  /\___  >\___  >__|_ \  \__/\  /  (____  /__|  \___  >___|  /
  *         \/     \/     \/     \/       \/        \/          \/     \/
  *    Numitron Geekwatch
- *    v0.1
+ *    v0.2
  *  
  * by DomesticHacks
  * http://domestichacks.info/
@@ -23,7 +23,9 @@
 #ifndef SETTINGS_H_
 #define SETTINGS_H_
 
-//#define DEBUG 1
+#include "Arduino.h"
+
+#define DEBUG 1
 
 #define BTN_LEFT  2
 #define BTN_RIGHT 3
@@ -65,6 +67,18 @@
 
 #define SCREEN_TIME 1
 #define SCREEN_DATE 2
-#define SCREEN_SETTIME 3
+#define SCREEN_OTP 3
+#define SCREEN_SETTIME 10
+
+#define SETTINGS_ADDR_OFFSET 0
+
+class EpromSettingsClass
+{
+	public:
+		int8_t readTimezoneOffset();
+		void writeTimezoneOffset(int8_t offset);
+};
+
+extern EpromSettingsClass EpromSettings;
 
 #endif

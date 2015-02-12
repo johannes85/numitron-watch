@@ -6,7 +6,7 @@
  *  \______  /\___  >\___  >__|_ \  \__/\  /  (____  /__|  \___  >___|  /
  *         \/     \/     \/     \/       \/        \/          \/     \/
  *    Numitron Geekwatch
- *    v0.1
+ *    v0.2
  *  
  * by DomesticHacks
  * http://domestichacks.info/
@@ -22,21 +22,23 @@
 
 #include "screenSettime.h"
 #include "display.h"
+#include "settings.h"
 
 void ScreenSettimeClass::init()
 {
 	Screen::init();
 	
 	timeoutBlink.timeoutValue = 200;
-	timeoutClose.timeoutValue = 5000;
+	timeoutClose.timeoutValue = 30000;
 	
 	timeSet = 0;
 	displayVisible = 1;
 	currentOption = 0;
+	Display.hexMode = 1;
 	oldButtonValueLeft = 1;
 	oldButtonValueRight = 1;
 	Rtc.now(currentTime);
-	currentValue = currentTime.day;
+	currentValue = currentTime.utcOffset;
 	
 	timeoutBlink.reset();
 	timeoutClose.reset();
@@ -59,31 +61,36 @@ void ScreenSettimeClass::loop()
 			}
 		}
 		
-		int maxValue = 0;
-		int initValue = 0;
+		int8_t maxValue = 0;
+		int8_t initValue = 0;
 		switch (currentOption) {
-			// Day
 			case 0:
+			// UTC offset
+				maxValue = 14;
+				initValue = -12;
+				break;
+			// Day
+			case 1:
 				maxValue = 31;
 				initValue = 1;
 				break;
 			// Month
-			case 1:
+			case 2:
 				maxValue = 12;
 				initValue = 1;
 				break;
 			// Year
-			case 2:
+			case 3:
 				maxValue = 99;
 				break;
 			// Hour
-			case 3:
+			case 4:
 				maxValue = 23;
 				break;
 			// Minutes
-			case 4:
-			// Seconds
 			case 5:
+			// Seconds
+			case 6:
 				maxValue = 59;
 				break;
 		}
@@ -101,26 +108,31 @@ void ScreenSettimeClass::loop()
 			currentOption++;
 			switch (currentOption) {
 				case 1:
+					currentTime.utcOffset = currentValue;
+					currentValue = currentTime.day;
+					Display.hexMode = 0;
+					break;
+				case 2:
 					currentTime.day = currentValue;
 					currentValue = currentTime.month;
 					break;
-				case 2:
+				case 3:
 					currentTime.month = currentValue;
 					currentValue = currentTime.year;
 					break;
-				case 3:
+				case 4:
 					currentTime.year = currentValue;
 					currentValue = currentTime.hours;
 					break;
-				case 4:
+				case 5:
 					currentTime.hours = currentValue;
 					currentValue = currentTime.minutes;
 					break;
-				case 5:
+				case 6:
 					currentTime.minutes = currentValue;
 					currentValue = currentTime.seconds;
 					break;
-				case 6:
+				case 7:
 					currentTime.seconds = currentValue;
 					break;
 			}
@@ -134,27 +146,38 @@ void ScreenSettimeClass::loop()
 		oldButtonValueRight = 1;
 	}
 	
-	if (currentOption < 6) {
-		Display.show(
-			currentValue / 10,
-			currentValue % 10,
-			displayVisible == 1 ? 1 : 0,
-			displayVisible == 1 ? 1 : 0
-		);
+	if (currentOption < 7) {
+		if (Display.hexMode == 1) {
+			Display.show(
+				0,
+				currentValue,
+				displayVisible == 1 ? 1 : 0,
+				displayVisible == 1 ? 1 : 0
+			);
+		} else {
+			Display.show(
+				currentValue / 10,
+				currentValue % 10,
+				displayVisible == 1 ? 1 : 0,
+				displayVisible == 1 ? 1 : 0
+			);
+		}
 		if (timeoutBlink.isTimedOut()) {
 			displayVisible = displayVisible == 1 ? 0 : 1;
 			timeoutBlink.reset();
 		}
 		
 		if (timeoutClose.isTimedOut()) {
+			Display.hexMode = 1;
 			screenFinished = 1;
 		}
 	} else {
 		Rtc.set(currentTime);
-		screenFinished = 1;
+		EpromSettings.writeTimezoneOffset(currentTime.utcOffset);
 		timeSet = 1;
+		Display.hexMode = 0;
+		screenFinished = 1;
 	}
 }
 
 ScreenSettimeClass ScreenSettime;
-

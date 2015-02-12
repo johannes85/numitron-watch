@@ -6,7 +6,7 @@
  *  \______  /\___  >\___  >__|_ \  \__/\  /  (____  /__|  \___  >___|  /
  *         \/     \/     \/     \/       \/        \/          \/     \/
  *    Numitron Geekwatch
- *    v0.1
+ *    v0.2
  *  
  * by DomesticHacks
  * http://domestichacks.info/
@@ -24,6 +24,15 @@
 #define _RTC_h
 
 #include "Arduino.h"
+
+#define SECS_PER_MIN  (60UL)
+#define SECS_PER_HOUR (3600UL)
+#define SECS_PER_DAY  (SECS_PER_HOUR * 24UL)
+#define DAYS_PER_WEEK (7UL)
+#define SECS_PER_WEEK (SECS_PER_DAY * DAYS_PER_WEEK)
+#define SECS_PER_YEAR (SECS_PER_WEEK * 52UL)
+#define LEAP_YEAR(Y)     ( ((1970+Y)>0) && !((1970+Y)%4) && ( ((1970+Y)%100) || !((1970+Y)%400) ) )
+static const uint8_t monthDays[]={31,28,31,30,31,30,31,31,30,31,30,31};
 
 //Flag is set when EEPROM page is busy due to “write” or automatic EEPROM refresh in progress
 #define RTC_STATUSBIT_EEbusy 7
@@ -54,6 +63,9 @@ class Time
 		uint8_t weekday;
 		uint8_t month;
 		uint8_t year;
+		int8_t utcOffset;
+		uint32_t getUnixTimeLocal();
+		uint32_t getUnixTimeUTC();
 };
 
 class RtcClass
@@ -62,7 +74,9 @@ class RtcClass
 		uint8_t decodeBcd(uint8_t bcd);
 		uint8_t encodeBcd(uint8_t dec);
 	public:
+		int8_t utcOffset;
 		void init();
+		void init(int8_t utcOffset);
 		void now(Time &time);
 		void set(Time &time);
 		uint8_t getStatus();

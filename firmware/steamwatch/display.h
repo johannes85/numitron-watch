@@ -6,7 +6,7 @@
  *  \______  /\___  >\___  >__|_ \  \__/\  /  (____  /__|  \___  >___|  /
  *         \/     \/     \/     \/       \/        \/          \/     \/
  *    Numitron Geekwatch
- *    v0.1
+ *    v0.2
  *  
  * by DomesticHacks
  * http://domestichacks.info/
@@ -35,9 +35,10 @@ class DisplayClass
 		uint8_t currentDot2;
 		uint8_t getShiftData(uint8_t charnum, uint8_t symbol, uint8_t dot);
 	public:
+		uint8_t hexMode;
 		void init();
-		void show(uint8_t symbol1, uint8_t symbol2, uint8_t dot1, uint8_t dot2);
-		void show(uint8_t symbol1, uint8_t symbol2);
+		void show(int8_t symbol1, int8_t symbol2, uint8_t dot1, uint8_t dot2);
+		void show(int8_t symbol1, int8_t symbol2);
 		void showDot(uint8_t dot1, uint8_t dot2);
 		void setEnabled(uint8_t enabled);
 };

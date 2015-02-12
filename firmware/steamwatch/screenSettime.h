@@ -6,7 +6,7 @@
  *  \______  /\___  >\___  >__|_ \  \__/\  /  (____  /__|  \___  >___|  /
  *         \/     \/     \/     \/       \/        \/          \/     \/
  *    Numitron Geekwatch
- *    v0.1
+ *    v0.2
  *  
  * by DomesticHacks
  * http://domestichacks.info/
@@ -41,7 +41,7 @@ class ScreenSettimeClass: public Screen
 		Time currentTime;
 		uint8_t currentOption;
 		uint8_t displayVisible;
-		uint8_t currentValue;
+		int8_t currentValue;
 		uint8_t oldButtonValueLeft;
 		uint8_t oldButtonValueRight;
 };
@@ -49,4 +49,3 @@ class ScreenSettimeClass: public Screen
 extern ScreenSettimeClass ScreenSettime;
 
 #endif
-
